@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body ng-app="myApp">
+	<div ng-controller="DemoController">
+		<h2>控制器：DemoController</h2>
+		<p>{{ name }}</p>
+	</div>
+
+	<div ng-controller="TestController">
+		<h2>控制器：TestController</h2>
+		<p>{{ name }}</p>
+	</div>
+	
+	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+	<script>
+		/*
+			今日内容:
+
+			1 MVC 和 MVVM
+			2 $scope.$watch() 监视数据变化
+			3 完善注册案例
+			4 在ng中使用jQuery (jqLite) 以及 启动ng的两种方式
+			5 创建控制器的方式
+			6 依赖注入(DI)原理介绍
+			7 ng 中的常用指令
+		*/
+
+		
+		// MVC 软件架构模式
+		// 作用：实现代码结构分离，解决应用程序页面展示、业务逻辑之间的紧耦合关系，
+		//      实现模块化和复用
+
+
+		// 将AngularJS看作 MVC 模式，此时：
+		// Model 数据模型，封装的 User构造函数 就是数据模型
+		// 		作用：操作数据，实现数据的增删改查
+
+		// View  视图，页面中被 ng-app 包裹的HTML结构
+		// 		作用：通过结构展示数据
+
+		// Controller 控制器，controller方法中指定的函数
+		// 		作用：接收用户从 View 发送来的请求（方法）
+		// 				 调用 Model 进行数据处理
+		// 				 将结果返回 View 展示给用户
+
+
+		// 将AngularJS看作 MVVM 模型，此时：
+		// Model 和 View 与 MVC模式中的相同
+		// ViewModel 视图模型，$scope
+		// 		作用：与 View 实现数据双向绑定，这是 MVVM 与 MVC 主要不同点
+		// 					通过 $scope 给 View 提供数据和方法
+
+		// MVW
+
+
+
+
+		// SPA 单页应用程序
+		// 整个应用程序（app）中只包含一个页面，这个页面是在应用程序第一次加载的时候，
+		// 就加载并渲染了
+
+		// 第一次请求：
+		// 	加载了当前要展示的页面内容
+		//  解析数据的js文件
+		//  其他资源（样式、图片等）
+		// 
+		// 以后的每次请求：
+		// 只加载 数据和一段HTML结构，解析后展示在页面指定的位置
+		// 
+		// 技术点：锚点值（# 哈希值）、hashchange、ajax
+
+
+
+
+		// 使用 angular 第一件事件就是：创建模块
+
+		// 创建模块
+		// 第一个参数：模块名称
+		// 第二个参数：当前模块的依赖项模块(这个参数是 必选的)
+		// var app = angular.module('myApp', []);
+
+		// 获取模块
+		// var ret = angular.module('myApp');
+		// console.log(ret === app); // true
+
+		// 注意：
+		//  在同一个页面中，可以指定多个 ng-app 但是，默认情况只有第一个 ng-app 起作用
+		//  如果想要让后面的 ng-app 也起作用，需要手动启动
+		// 
+		// 注意: 不推荐在一个页面中创建多个 ng-app !!!
+
+
+
+		// 控制器
+		// 一个模块中可以包含多个控制器
+		// 控制器的用途:
+		// 	1 设置 $scope 对象的初始状态, 即: 给视图提供数据
+		// 	2 给 $scope 对象添加行为, 即: 为视图提供一些方法
+
+		/* var app = angular
+			.module('myApp', []);
+
+		app.controller('DemoController', function ($scope) {
+			// 通过 $scope 给视图暴露数据
+			$scope.name = '小红';
+			$scope.age = 19;
+			$scope.gender = 'female';
+		});
+		
+		app.controller('TestController', function ($scope) {
+			$scope.name = '小明';
+		});  */
+
+
+
+
+		// 指令：指令是 html标签上的一些标记，让NG给DOM元素添加一些特殊的行为
+		// ng-app 作用：启动angular，并且规定了angular的管理的范围
+		// ng-controller 作用：指定模块中的哪个控制器来管理当前元素内部的内容
+		// ng-model 作用：指定了数据模型中的数据，起到了双向绑定的作用
+		// 		能够添加 ng-model 的元素是：表单元素
+		// 		ng-model 指令操作的就是表单元素的 value 属性
+		// ng-click 作用：用来绑定单击事件（angular的事件）
+
+		// ng-init 指令: 用来初始化 视图模型(viewmodel $scope) 中的数据
+		// 	ng-init="str='abc'"
+		// 	{{ str }}
+
+
+		// 插值表达式：{{  }}
+		// 将表达式的值，插入到页面中指定的位置
+	</script>
+</body>
+
+</html>

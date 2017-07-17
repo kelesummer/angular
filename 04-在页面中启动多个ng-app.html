@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div ng-app="myApp" ng-controller="DemoController">
+    <p>{{ name }}</p>
+  </div>
+
+  <div id="dv" ng-controller="TestController">
+    <p>{{ name }}</p>
+  </div>
+
+  <script src="./angular.js"></script>
+  <script>
+    // 第一种启动angular的方式：（自动启动）,只会启动第一个 ng-app
+    angular
+      .module('myApp', [])
+      .controller('DemoController', function ($scope) {
+        $scope.name = 'jack';
+      });
+    
+    // 很少使用这种方式，一个页面中推荐只有一个模块！！！
+    
+    // 第二种启动方式：手动启动
+    // 注意点：不需要在页面中再单独通过 ng-app 指定，只需要调用 angular.bootstrap()
+    //         将DOM对象 和 模块作为参数传入，那么这个DOM对象和模块就绑定到一起了
+    // 控制器还需要通过 ng-controller 指定
+    angular
+      .module('testApp', [])
+      .controller('TestController', function ($scope) {
+        $scope.name = 'jack';
+      });
+
+    angular.element(function () {
+      var dv = document.getElementById('dv');
+      angular.bootstrap(dv, ['testApp']);
+    });
+  </script>
+</body>
+
+</html>

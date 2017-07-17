@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body ng-app="myApp" ng-controller="TestController">
+  <h1>{{name}}</h1>
+
+  <script src="./angular.js"></script>
+  <script>
+    // 2 注入式（安全方式）
+    // 第二个参数：变为数组，数组的最后一项是 控制器函数，前面所有项表示
+    //            要注入到控制器中的 服务！
+    //            比如：$scope 就是一个服务
+    // 注入服务是什么顺序，函数参数就是什么顺序
+
+    // 压缩：字符串是不会被压缩的
+
+    // angular的开发原则：不推荐使用任何全局对象，如果要使用就通过使用 服务 来实现
+
+    angular
+      .module('myApp', [])
+      .controller('TestController', ['$scope', '$window', '$log', function ($scope, $window, $log) {
+        $scope.name = 'jack';
+        // console.log($window === window);
+        $log.log($window === window);
+      }]);
+
+    /* angular.module("myApp", []).controller("TestController", ["$scope", function (a) { a.name = "jack" }]); */
+  </script>
+</body>
+
+</html>

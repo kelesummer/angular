@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+
+  </div>
+
+  <!-- angular中也提供类似 jQuery 的功能，这个功能在 angular 中叫做：jqLite（轻量级jQuery）
+       轻量级： jqLite 仅仅实现了 jQuery 一部分功能 -->
+  <!-- <script src="./node_modules/jquery/dist/jquery.js"></script>
+   -->
+  
+  <script src="./angular.js"></script>
+  <script>
+    // 注意：angularjs 不推荐直接手动操作DOM，如果想要操作DOM，就通过 自定义指令 来实现！！！
+
+    // 如果在页面中引入了 jQuery 文件，那么 angular.element 就是 jQuery
+    // 此时，angular.element就具有了 jQuery 的所有功能
+
+    // 怎么使用jqLite？？？
+    // angular.element() 相当于 jQuery的 $()
+    // $(function() {});
+    /* angular.element(function () {
+      // 通过传入一个 DOM对象，来获取页面中的元素
+      angular.element( document.body ).addClass('test');
+    }); */
+
+    /* var $ = angular.element;
+    $(function() {
+      // $(document.body).addClass('test');
+
+      // 不支持选择器
+      $('body').addClass('test');
+    }); */
+  </script>
+</body>
+
+</html>

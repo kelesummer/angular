@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+  <div ng-controller="DemoController">
+    <!-- <input type="text" ng-model="name"> -->
+    <input type="text" ng-model="obj.name">
+  </div>
+
+  <script src="./angular.js"></script>
+  <script>
+    angular
+      .module('myApp', [])
+      .controller('DemoController', function ($scope) {
+        // 监视数据的变化：
+        // $scope.$watch();
+
+        // var test = 123;
+        // $scope.name = 'jack';
+        // $scope.name = '';
+
+        $scope.obj = {
+          name: 'jack'
+        };
+
+        /* // 语法：
+        // 第一个参数：表示要监视的数据
+        //    注意：要监视的数据必须是 $scope 中提供的
+        // 第二个参数：是一个函数，只要数据发生变化，这个函数就会被调用
+        $scope.$watch('name', function(newValue, oldValue) {
+          // 因为第一次 newValue 和 oldValue 值相同，所以，我们利用这一点
+          // 取消第一次监视数据
+          if(newValue === oldValue) {
+            return;
+          }
+
+          // newValue 表示变化之后的数据（当前数据）
+          // oldValue 表示变化之前的数据
+          console.log('当前值为：' + newValue, '上一次的值：' + oldValue);
+        }); */
+
+        // 如果要监视对象数据的变化，需要传入第三个参数：true
+        // 对象属性的变化，也能被监视到
+        $scope.$watch('obj', function (newValue, oldValue) {
+          // console.log('当前值为：' + JSON.stringify(newValue));
+          // console.log('上一次的值：' + JSON.stringify(oldValue));
+
+          console.log(newValue.name, oldValue.name);
+        }, true);
+      });
+  </script>
+</body>
+
+</html>

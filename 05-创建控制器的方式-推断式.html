@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body ng-app="myApp" ng-controller="TestController">
+  <h1>{{name}}</h1>
+
+  <script src="./angular.js"></script>
+  <script>
+    // 1 推断式
+    // 注意：$scope 必须使用这个名字，如果替换为其他值就会报错！
+    // 注意：这种方式不利于代码压缩，因为代码压缩以后 $scope 会被替换为其他的名字
+
+    angular
+      .module('myApp', [])
+      .controller('TestController', function($scope) {
+        $scope.name = 'jack';
+      });
+
+    /* angular.module("myApp", []).controller("TestController", function (a) { a.name = "jack" }); */
+  </script>
+</body>
+
+</html>

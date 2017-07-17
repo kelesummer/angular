@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<!-- 
+  
+  TestController 相当于构造函数
+  test 相当于构造函数的实例对象
+
+-->
+
+<body ng-app="myApp" ng-controller="TestController as test">
+  <h1>{{ test.name }}</h1>
+
+  <h1>{{ age }}</h1>
+
+  <script src="./angular.js"></script>
+  <script>
+    // 2 面向对象方式
+    angular
+      .module('myApp', [])
+      .controller('TestController', ['$scope', function ($scope) {
+        // 此时，这个函数被当作构造函数来使用
+
+        // 添加给 this 的属性，在页面中需要通过实例对象（test）来访问
+        //    例如：{{ test.name }}
+        this.name = 'jack';
+
+        // 添加给 $scope 的属性，在页面中还是通过原来的使用方式
+        //    例如：{{ age }}
+        $scope.age = 19;
+      }]);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body ng-app="myApp">
+  <div ng-controller="DemoController">
+
+  </div>
+
+  <script src="./angular.js"></script>
+  <script>
+    angular
+      .module('myApp', [])
+      .controller('DemoController', ['$scope', function ($scope) {
+
+        // 依赖注入（DI Dependency injection）
+        // 作用：简化传入参数的操作，根据指定的参数的名字，来使用参数
+        //       也就是说：想使用哪一个参数，就把这个参数的名字传进来，将来angualr
+        //       就能根据传入参数的名字，来找到相应的对象
+
+        var obj = {
+          name: 'jack',
+          age: 19,
+          gender: 'male'
+        };
+
+        /* function fn(name) { }
+        fn(obj.name); */
+
+        /* function fn(age) { }
+        fn(obj.age); */
+
+        /* function fn(gender) { }
+        fn(obj.gender); */
+
+        /* function fn(name, age) { }
+        fn(obj.name, obj.age); */
+
+
+        function fn($log) { 
+          console.log('函数参数：', $log);
+        }
+
+        // 1 将我们声明的函数转化为字符串
+        var fnStr = fn.toString()
+        console.log(fnStr);
+
+        // 2 通过正则表达式将函数参数匹配出来
+        var r = /^[^\(]*\(\s*([^\)]*)\)/;
+        var args = r.exec(fn.toString())[1].split(',');
+        console.log(args);
+
+        // 3 根据参数名称到 angular内置的对象中找到这个参数名称对应的值
+        var obj = {
+          $scope: { name: '这是 $scope 对象' },
+          $window: {},
+          $log: { name: '这是 $log 对象'}
+        };
+
+        fn( obj[ args[0] ] );
+
+        // args[0] ===> $scope
+
+        // console.log( obj[ args[0] ] );
+
+        // fn( obj[ args[0] ] );
+
+
+        // 原来使用参数的方式：
+        // 必须要按照参数的顺序传入，前面的参数不传入，后面的参数就没有值
+        // 因为 形参 和 实参 一一对应
+        /* function fn(name, age, gender) {
+        }
+        fn('jack', 19, 'male');
+        fn(19); */
+
+      }]);
+  </script>
+</body>
+
+</html>
